@@ -8,7 +8,7 @@ const mockRequest = supertest(server);
 describe("validator middleware", () => {
   test("person path without qeury check", async () => {
     const res = await mockRequest.get("/person");
-    expect(res.status).toBe(500);
+    expect(res.status).toBe(200);
   });
 
   test("correct qeury ", async () => {
