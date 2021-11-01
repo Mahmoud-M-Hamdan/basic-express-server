@@ -5,18 +5,18 @@ const { server } = require("../src/server");
 const supertest = require("supertest");
 const mockRequest = supertest(server);
 
-describe("validator middle ware", () => {
+describe("validator middleware", () => {
   test("person path without qeury check", async () => {
     const res = await mockRequest.get("/person");
     expect(res.status).toBe(500);
   });
 
-  test("person path with qeury check", async () => {
-    const res = await mockRequest.get("/person?name=wesam");
+  test("correct qeury ", async () => {
+    const res = await mockRequest.get("/person?name=mahmoud");
     expect(res.status).toBe(200);
   });
 
-  test("check that the validator moves to the next line", async () => {
+  test("check next line", async () => {
     let next = jest.fn();
     let req = {
       query: {},
